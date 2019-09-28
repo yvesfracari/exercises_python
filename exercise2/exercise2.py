@@ -1,19 +1,22 @@
 def get_runners_number():
-    runner_number = int(input("Informe o numero de corredores\n"))
-    if(runner_number < 2 or runner_number > 10):
+    runners_number = int(input("Informe o numero de corredores\n"))
+
+    if(runners_number < 2 or runners_number > 10):
         print("O numero deve ser entre 2 e 10")
         return get_runners_number()
     else:
-        return(runner_number)
+        return(runners_number)
 
-def get_score_list():
+def get_score_list(n):
     scores = list(map(int, input("Informe os pontos\n").split()))
     
-    if (not test_score_list(scores, runners_number)):
-        return get_score_list()
+    if (not test_score_list(scores, n)):
+        return get_score_list(n)
 
     else:
-        return scores
+        scores.sort(reverse=True)
+        runners_score = list(set(scores))
+        return runners_score
 
 def test_score_list(test_list, size):
     if(len(test_list) != size):
@@ -28,10 +31,11 @@ def test_score_list(test_list, size):
     return True
 
 
-if __name__ == '__main__':
+def main():
     runners_number = get_runners_number()
+    runners_score = get_score_list(runners_number)
 
-    
-    runners_score = get_score_list()
-    runners_score.sort(reverse=True)
-    print(f"O vencedor fez {runners_score[1]} pontos")
+    print(f"O segundo colocado fez {runners_score[1]} pontos")
+
+if __name__ == '__main__':
+    main()
