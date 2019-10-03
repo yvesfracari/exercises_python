@@ -1,9 +1,11 @@
 def test_marks(list_scores, name_try, student_marks):
+    '''Returns if list of marks is correct.'''
+
     if name_try in student_marks.keys():
         print("Estudante já informado")
-        return False;
-        
-    if (len(list_scores) != 3):
+        return False
+
+    if len(list_scores) != 3:
         print("Numero de notas invalido, envie apenas 3 notas")
         return False
 
@@ -11,13 +13,16 @@ def test_marks(list_scores, name_try, student_marks):
         if (score < 0 or score > 100):
             print("Valor Invalido:", score)
             return False
-    
+
     return True
 
 
 def get_name(student_marks):
-    
+    '''Run until get a name, with a input, in student_marks dictionary.
+    Returns the name.'''
+
     query_name = input("Qual aluno deseja saber a media acomulada?\n")
+
     if query_name in student_marks.keys():
         return query_name
 
@@ -25,24 +30,26 @@ def get_name(student_marks):
     return get_name(student_marks)
 
 def main():
+    '''Main code funtion.'''
+
     flag = False
 
-    while(not flag):
-        n = int(input("Serao informadas as notas de quantos alunos?\n"))
-        if (n >= 2 and n <= 10):
+    while not flag:
+        students = int(input("Serao informadas as notas de quantos alunos?\n"))
+        if 2 <= students >= 10:
             flag = True
         else:
             print("Devem ser informado notas de 2 a 10 alunos")
 
     student_marks = {}
 
-    for _ in range(n):
+    for _ in range(students):
         flag = False
 
-        while(not flag): 
+        while not flag:
             name, *line = input().split()
             scores = list(map(float, line))
-            flag = test_marks (scores, name, student_marks)
+            flag = test_marks(scores, name, student_marks)
 
         student_marks[name] = scores
 

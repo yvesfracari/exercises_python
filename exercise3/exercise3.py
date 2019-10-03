@@ -1,16 +1,22 @@
+'''Print the squares until a input number.'''
+
 def get_natural():
-    n = int(input())
-    if (n < 1 or n > 20):
+    '''Return a natural input number.'''
+
+    number = int(input())
+    if (number < 1 or number > 20):
         print("Escreva um numero natural entre 1 e 20\n")
         return get_natural()
-    else:
-        return n
+
+    return number
 
 def main():
-    n = get_natural()
-    for i in range (n):
+    '''Print the squares until a input number.'''
+    number = get_natural()
+
+    for i in range(number):
         square = i**2
         print(square)
-    
+
 if __name__ == '__main__':
     main()
