@@ -36,7 +36,7 @@ def main():
 
     while not flag:
         students = int(input("Serao informadas as notas de quantos alunos?\n"))
-        if 2 <= students >= 10:
+        if 2 <= students <= 10:
             flag = True
         else:
             print("Devem ser informado notas de 2 a 10 alunos")
